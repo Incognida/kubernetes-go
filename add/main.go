@@ -10,7 +10,7 @@ import (
 	"net"
 )
 
-type server struct {}
+type server struct{}
 
 func (s *server) Compute(cxt context.Context, r *pb.AddRequest) (*pb.AddResponse, error) {
 	result := &pb.AddResponse{}
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb2.RegisterAddServiceServer(s, &server{})
+	pb.RegisterAddServiceServer(s, &server{})
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
